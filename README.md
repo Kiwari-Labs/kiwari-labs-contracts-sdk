@@ -1,9 +1,4 @@
 # Token-service-contracts
 
 ## Overview
-
-### Installation
-
-```
-$ npm install @kiwari-labs/tokenservice/contracts
-```
+Token service is a smart contract that implementing factory pattern for creating a new asset on DLT-based Loyalty Platform.

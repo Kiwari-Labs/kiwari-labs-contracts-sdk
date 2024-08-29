@@ -11,6 +11,7 @@ contract PoolPointFactory is IPointFactory, Ownable {
     // preset use the pre-configuration asset profile.
     // custom uset the disirable configuration from creator.
     enum ASSET_PROFILE = { PRESET, CUSTOME }
+
     // expirable asset for asset that can be expire.
     // non-expirable asset for asset that can't be expire.
     enum ASSET_TYPE = { NON_EXPIRABLE, EXPIRABLE }
@@ -33,6 +34,14 @@ contract PoolPointFactory is IPointFactory, Ownable {
     /** constructor */
     constructor() Ownable(msg.sender) {
         // ...
+    }
+
+    function _createNonExpirableAsset() private returns (address) {
+        // ...
+    }
+
+    function _createExpirableAsset() private returns (address) {
+        /// ...
     }
 
     /// @param assetId address of the asset contract.
@@ -78,35 +87,15 @@ contract PoolPointFactory is IPointFactory, Ownable {
     }
 
     function createAsset() external {
+        address assetId;
+        address assetIssuer = msg.sender;
         if (asset.assetType == ASSET_TYPE.EXPIRABLE) {
-            if (asset.assetProfile == ASSET_PROFILE.CUSTOM) {
-                if (asset.assetClass == ASSET_CLASS.ERC721) {
-                    // new ERC721EXP()
-                } else if (asset.assetClass == ASSET_CLASS.ERC1155) {
-                    // new ERC1155EXP()
-                } else {
-                    // new ERC20EXP()
-                }
-            } else {
-                if (asset.assetClass == ASSET_CLASS.ERC721) {
-                    // new ERC721EXP()
-                } else if (asset.assetClass == ASSET_CLASS.ERC1155) {
-                    // new ERC1155EXP()
-                } else {
-                    // new ERC20EXP()
-                }
-            }
+           assetId = _createExpirableAsset(,,assetIssuer);
         } else {
-            if (asset.assetClass == ASSET_CLASS.ERC721) {
-                // new ERC721()
-            } else if (asset.assetClass == ASSET_CLASS.ERC1155) {
-                // new ERC1155()
-            } else {
-                // new ERC20()
-            }
+           assetId = _createNonExpirableAsset(,,assetIssuer);
         }
 
-        emit assetCreated();
+        emit assetCreated(, , assetId, assetIssuer);
     }
     
     /// @inheritdoc IPointFactory
