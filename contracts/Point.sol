@@ -12,17 +12,24 @@ import "./interfaces/IPoint.sol";
  * @notice This contract implement for layalty program.
  */
 contract Point is ERC20Permit, ERC20Burnable, Ownable, IPoint {
+    uint8 private _decimals;
+
     constructor(
         uint256 _initialSupply,
         address _owner,
         string memory _name,
-        string memory _symbol
+        string memory _symbol,
+        uint8 decimals_
     ) ERC20(_name, _symbol) ERC20Permit(_name) Ownable(_owner) {
         mintPoint(msg.sender, _initialSupply);
+        _decimals = _decimals;
+    }
+
+    function decimals() public view override returns (uint8) {
+        return _decimals;
     }
 
     /// @inheritdoc IPoint
-
     function mintPoint(address _to, uint256 _amount) public onlyOwner {
         _mint(_to, _amount);
     }

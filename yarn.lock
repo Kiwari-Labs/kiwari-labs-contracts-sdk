@@ -404,6 +404,13 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@kiwarilabs/contracts@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@kiwarilabs/contracts/-/contracts-1.0.1.tgz#c2292c87614c7d24539c907125c847208964578f"
+  integrity sha512-G4kKkANjg5rxb/KbRL1DpZo+zTMrWfPdXDO8qPrjXm3Ifn8eN8JEQtrYApRhNH7rOChgBJ08oUrm3LVriXPCWw==
+  dependencies:
+    "@openzeppelin/contracts" "^5.0.2"
+
 "@metamask/eth-sig-util@^4.0.0":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@metamask/eth-sig-util/-/eth-sig-util-4.0.1.tgz#3ad61f6ea9ad73ba5b19db780d40d9aae5157088"

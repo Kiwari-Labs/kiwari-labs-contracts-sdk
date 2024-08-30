@@ -16,6 +16,7 @@
     "smart contracts"
   ],
   "devDependencies": {
+    "@kiwarilabs/contracts": "^1.0.1",
     "@nomicfoundation/hardhat-chai-matchers": "^2.0.0",
     "@nomicfoundation/hardhat-ethers": "^3.0.0",
     "@nomicfoundation/hardhat-ignition": "^0.15.0",

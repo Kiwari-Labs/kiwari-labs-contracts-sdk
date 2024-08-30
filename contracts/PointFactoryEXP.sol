@@ -10,6 +10,7 @@ contract PoolPointFactory is IPointFactory, Ownable {
 
     /// @inheritdoc IPointFactory
     function createNewPointContract(
+        uint256 _initialSupply,
         address _owner,
         string memory _name,
         string memory _symbol,
@@ -22,11 +23,15 @@ contract PoolPointFactory is IPointFactory, Ownable {
             revert BadRequest("Owner address must not be the zero address");
         }
 
-        // frameSize is meaning expirePeriod_ uint in slot.
-        // slotSize if slot declare to 4 mean each era (year) partitioning into 4 slot.
-        // it's abstract term for avoided covertion about unit you can set it to 4 slot.
-        // and frameSize 1 slot can be estimated as 3 months
-        Point point = new Point(_name, _symbol, _decimals, _blockTime, _frameSize, _slotSize);
+        Point point = new Point(
+            _owner,
+            _name,
+            _symbol,
+            _decimals,
+            _blockTime,
+            _frameSize,
+            _slotSize
+        );
 
         emit NewPointContract(address(point), _owner);
 

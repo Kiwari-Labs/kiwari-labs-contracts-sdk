@@ -13,7 +13,11 @@ contract PoolPointFactory is IPointFactory, Ownable {
         uint256 _initialSupply,
         address _owner,
         string memory _name,
-        string memory _symbol
+        string memory _symbol,
+        uint8 _decimals,
+        uint16 _blockTime,
+        uint8 _frameSize,
+        uint8 _slotSize
     ) external onlyOwner returns (address) {
         if (_initialSupply <= 0) {
             revert BadRequest("Initial supply must be greater than 0");
@@ -23,7 +27,7 @@ contract PoolPointFactory is IPointFactory, Ownable {
             revert BadRequest("Owner address must not be the zero address");
         }
 
-        Point point = new Point(_initialSupply, _owner, _name, _symbol);
+        Point point = new Point(_initialSupply, _owner, _name, _symbol, _decimals);
 
         emit NewPointContract(address(point), _owner);
 
