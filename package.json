@@ -1,12 +1,20 @@
 {
   "name": "token-service-contracts",
   "version": "1.0.0",
-  "description": "A Smart contract for create asset from a asset template on DLT-based Loyalty Platform.",
+  "description": "A Smart contract for create asset from a asset template on DLT-based Loyalty Platform",
   "main": "index.js",
   "repository": "https://github.com/Kiwari-Labs/token-service-contracts.git",
-  "author": "kiwari-labs",
+  "author": {
+    "name": "kiwari-labs",
+    "email": "kiwarilabs@protonmail.com",
+    "url": "https://github.com/Kiwari-Labs"
+  },
   "license": "Apache-2.0",
   "private": true,
+  "keywords": [
+    "solidity",
+    "smart contracts"
+  ],
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^2.0.0",
     "@nomicfoundation/hardhat-ethers": "^3.0.0",
