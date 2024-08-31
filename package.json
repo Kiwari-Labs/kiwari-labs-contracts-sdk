@@ -15,6 +15,13 @@
     "solidity",
     "smart contracts"
   ],
+  "scripts": {
+    "compile": "npx hardhat compile",
+    "coverage": "npx hardhat coverage",
+    "deploy:prod": "echo not implement yet",
+    "deploy:stg": "echo not implement yet",
+    "test": "npx hardhat test"
+  },
   "devDependencies": {
     "@kiwarilabs/contracts": "^1.0.1",
     "@nomicfoundation/hardhat-chai-matchers": "^2.0.0",
