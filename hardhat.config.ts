@@ -1,7 +1,7 @@
+import "@nomicfoundation/hardhat-toolbox";
+import { HardhatUserConfig } from "hardhat/config";
 import * as dotenv from "dotenv";
 
-import { HardhatUserConfig } from "hardhat/config";
-import "@nomicfoundation/hardhat-toolbox";
 
 dotenv.config();
 
@@ -9,19 +9,27 @@ const config: HardhatUserConfig = {
   solidity: {
     version: "0.8.20",
     settings: {
-      evmVersion: "london",
+      evmVersion: "paris",
     },
   },
-
+  ignition: {
+    requiredConfirmations: 1,
+  },
   networks: {
-    "loaffinity-dev": {
-      chainId: 508,
-      url: process.env.RPC_URL || "",
-      gasPrice: 100000,
-      gas: 4000000,
+    "staging": {
+      url: process.env.STG_RPC_URL,
+      gasPrice: "auto",
+      gas: "auto",
       accounts:
-        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+        process.env.STG_PRIVATE_KEY !== undefined ? [process.env.STG_PRIVATE_KEY] : [],
     },
+    "production": {
+      url: process.env.PROD_RPC_URL,
+      gasPrice: "auto",
+      gas: "auto",
+      accounts:
+        process.env.PROD_PRIVATE_KEY !== undefined ? [process.env.PROD_PRIVATE_KEY] : [],
+    }
   },
 };
 
