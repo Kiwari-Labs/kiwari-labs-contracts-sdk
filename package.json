@@ -18,9 +18,9 @@
   "scripts": {
     "compile": "npx hardhat compile",
     "coverage": "npx hardhat coverage",
-    "deploy:prod": "echo not implement yet",
-    "deploy:stg": "echo not implement yet",
-    "deploy:dev": "npx hardhat ignition deploy --network loaffinity-dev",
+    "deploy:prod": "npx hardhat ignition deploy --network production",
+    "deploy:stg": "npx hardhat ignition deploy --network staging",
+    "deploy:dev": "npx hardhat ignition deploy --network hardhat",
     "test": "npx hardhat test"
   },
   "devDependencies": {

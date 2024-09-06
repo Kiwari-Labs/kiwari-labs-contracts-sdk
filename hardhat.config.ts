@@ -15,9 +15,21 @@ const config: HardhatUserConfig = {
     requiredConfirmations: 1,
   },
   networks: {
+    // hardhat configured to be free gas network.
+    hardhat: {
+      allowUnlimitedContractSize: true,
+      minGasPrice: 0,
+      gasPrice: 0,
+      blockGasLimit: 100_000_000,
+      mining: {
+        mempool: {
+          order: "fifo"
+        }
+      }
+    },
     "staging": {
       url: process.env.STG_RPC_URL,
-      gasPrice: "auto",
+      gasPrice: 'auto',
       gas: "auto",
       accounts:
         process.env.STG_PRIVATE_KEY !== undefined ? [process.env.STG_PRIVATE_KEY] : [],
