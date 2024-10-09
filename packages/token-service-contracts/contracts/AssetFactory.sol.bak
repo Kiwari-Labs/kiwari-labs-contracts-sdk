@@ -5,7 +5,7 @@ pragma solidity ^0.8.20;
 // import "@kiwarilabs/contracts/preset/ERC721EXP.sol.sol";
 // import "@kiwarilabs/contracts/preset/ERC1155EXP.sol.sol";
 
-import "./interfaces/IAssetFactory.sol";
+// import "./interfaces/IAssetFactory.sol";
 import "@openzeppelin/contracts/access/extensions/AccessControlEnumerable.sol";
 
 contract AssetFactory is IAssetFactory, AccessControlEnumerable {
