@@ -18,7 +18,7 @@ const config: HardhatUserConfig = {
     // hardhat configured to be free gas network.
     hardhat: {
       allowUnlimitedContractSize: true,
-      minGasPrice: 0,
+      initialBaseFeePerGas: 0,
       gasPrice: 0,
       blockGasLimit: 100_000_000,
       mining: {
