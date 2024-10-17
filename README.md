@@ -74,4 +74,5 @@ For support or any inquiries, feel free to reach out to us at [github-issue](htt
 
 ### License
 
-This project is licensed under the Apache-2.0 License. See the [LICENSE](LICENSE) file for more details.
+This project is licensed under the Apache-2.0 License. See the [LICENSE](LICENSE-APACHE-2.0.md) file for more details.  
+Interface for interacting with ERC20 standard licensed under the MIT License. See the [LICENSE](LICENSE-MIT.md) file for more details.
