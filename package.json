@@ -1,9 +1,9 @@
 {
-  "name": "token-service-contracts",
+  "name": "service-contracts",
   "version": "1.0.0",
-  "description": "A Smart contract for create asset from a asset template on DLT-based Loyalty Platform",
+  "description": "A Smart contract for multiple type of service on DLT-based Loyalty Platform",
   "main": "index.js",
-  "repository": "https://github.com/Kiwari-Labs/token-service-contracts.git",
+  "repository": "https://github.com/Kiwari-Labs/monorepo-service-contracts.git",
   "author": {
     "name": "kiwari-labs",
     "email": "kiwarilabs@protonmail.com",
@@ -16,12 +16,21 @@
     "smart contracts"
   ],
   "scripts": {
-    "compile": "npx hardhat compile",
-    "coverage": "npx hardhat coverage",
-    "deploy:prod": "npx hardhat ignition deploy --network production",
-    "deploy:stg": "npx hardhat ignition deploy --network staging",
-    "deploy:dev": "npx hardhat ignition deploy --network hardhat",
-    "test": "npx hardhat test"
+    "compile:campaign": "cd packages/campaign-service-contracts && npx hardhat compile",
+    "compile:exchange": "cd packages/exchange-service-contracts && npx hardhat compile",
+    "compile:token": "cd packages/token-service-contracts && npx hardhat compile",
+    "coverage:campaign": "cd packages/campaign-service-contracts && npx hardhat coverage",
+    "coverage:exchange": "cd packages/exchange-service-contracts && npx hardhat coverage",
+    "coverage:token": "cd packages/token-service-contracts && npx hardhat coverage",
+    "test:campaign": "cd packages/campaign-service-contracts && npx hardhat test",
+    "test:exchange": "cd packages/exchange-service-contracts && npx hardhat test",
+    "test:token": "cd packages/token-service-contracts && npx hardhat test",
+    "deploy:prod:campaign": "ccd packages/campaign-service-contracts && npx hardhat ignition deploy --network production",
+    "deploy:prod:exchange": "cd packages/exchange-service-contracts && npx hardhat ignition deploy --network production",
+    "deploy:prod:token": "cd packages/token-service-contracts && npx hardhat ignition deploy --network production",
+    "deploy:stg:campaign": "cd packages/campaign-service-contracts && npx hardhat ignition deploy --network staging",
+    "deploy:stg:exchange": "cd packages/exchange-service-contracts && npx hardhat ignition deploy --network staging",
+    "deploy:stg:token": "cd packages/token-service-contracts && npx hardhat ignition deploy --network staging"
   },
   "devDependencies": {
     "@kiwarilabs/contracts": "^1.0.1",

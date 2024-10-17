@@ -1,11 +1,11 @@
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: Apache-2.0
 pragma solidity ^0.8.20;
 
-import "./PointEXP.sol";
+import "./PointToken.sol";
 import "./interfaces/IPointFactory.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract PoolPointFactory is IPointFactory, Ownable {
+contract PointTokenFactory is IPointTokenFactory, Ownable {
     constructor() Ownable(msg.sender) {}
 
     /// @inheritdoc IPointFactory

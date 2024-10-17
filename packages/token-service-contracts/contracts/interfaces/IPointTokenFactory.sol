@@ -1,7 +1,7 @@
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.20;
+// SPDX-License-Identifier: Apache-2.0
+pragma solidity >=0.8.0 <0.9.0;
 
-interface IPointFactory {
+interface IPointTokenFactory {
     /// @notice Emitted when `deploy` is called
     event NewPointContract(address indexed pointAddress, address indexed owner);
 

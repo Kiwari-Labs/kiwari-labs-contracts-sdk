@@ -1,11 +1,12 @@
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: Apache-2.0
 pragma solidity >=0.5.0 <0.9.0;
 
-import "./interfaces/IPoint.sol";
+import "./interfaces/IERC20Burnable.sol";
+import "./interfaces/IERC20Mintable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@kiwarilabs/contracts/abstracts/ERC20EXPBase.sol";
 
-contract Point is ERC20EXPBase, Ownable, IPoint {
+contract PointToken is ERC20EXPBase, IERC20Burnable, IERC20Mintable, Ownable {
     uint8 private _decimals;
 
     constructor(
@@ -34,13 +35,11 @@ contract Point is ERC20EXPBase, Ownable, IPoint {
         return _decimals;
     }
 
-    /// @inheritdoc IPoint
-    function mintPoint(address to, uint256 value) public onlyOwner {
+    function mint(address to, uint256 value) public override onlyOwner {
         _mint(to, value);
     }
 
-    /// @inheritdoc IPoint
-    function burnPoint(address from, uint256 value) public onlyOwner {
+    function burn(address from, uint256 value) public override onlyOwner {
         _burn(from, value);
     }
 }
