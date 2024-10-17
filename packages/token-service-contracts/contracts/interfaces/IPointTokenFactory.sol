@@ -1,6 +1,9 @@
 // SPDX-License-Identifier: Apache-2.0
 pragma solidity >=0.8.0 <0.9.0;
 
+/// @title Interface for Point Token Factory contract
+/// @author Kiwari Labs
+
 interface IPointTokenFactory {
     /// @notice Emitted when `deploy` is called
     event NewPointContract(address indexed pointAddress, address indexed owner);

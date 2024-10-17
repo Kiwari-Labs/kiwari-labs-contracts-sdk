@@ -1,6 +1,9 @@
 // SPDX-License-Identifier: Apache-2.0
 pragma solidity ^0.8.20;
 
+/// @title Point Token Factory contract
+/// @author Kiwari Labs
+
 import "./PointToken.sol";
 import "./interfaces/IPointFactory.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";

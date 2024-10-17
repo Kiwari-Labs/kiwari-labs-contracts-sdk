@@ -1,6 +1,9 @@
 // SPDX-License-Identifier: Apache-2.0
 pragma solidity >=0.5.0 <0.9.0;
 
+/// @title Point Token Factory contract
+/// @author Kiwari Labs
+
 import "./interfaces/IERC20Burnable.sol";
 import "./interfaces/IERC20Mintable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
