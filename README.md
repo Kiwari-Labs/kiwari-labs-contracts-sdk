@@ -11,8 +11,8 @@
 - git [Download](https://git-scm.com/)
 
 ```shell
-git clone https://github.com/Kiwari-Labs/service-contracts.git
-cd token-service-contracts
+git clone https://github.com/Kiwari-Labs/monorepo-service-contracts.git
+cd monorepo-service-contracts
 ```
 
 ## Installing
