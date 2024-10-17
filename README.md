@@ -2,7 +2,7 @@
 
 ## Overview
 
-service contract is a smart contract that implementing factory pattern for creating a new asset on DLT-based Loyalty Platform.
+`monorepo-service-contracts` contain a smart contract that implementing factory pattern for creating a agreement, campaign and token on DLT-based Loyalty Platform.
 
 ## Prerequisite
 
@@ -31,12 +31,16 @@ To compile the smart contracts, run command
 yarn compile
 ```
 
-## Testing
+## Testing and Coverage
 
 To run the tests and ensure that the contracts behave as expected, run command
 
 ```
 yarn test
+```
+
+```
+yarn coverage
 ```
 
 ## Deploying
@@ -74,5 +78,5 @@ For support or any inquiries, feel free to reach out to us at [github-issue](htt
 
 ### License
 
-This project is licensed under the Apache-2.0 License. See the [LICENSE](LICENSE-APACHE-2.0.md) file for more details.  
+This smart code of each service is licensed under the Apache-2.0 License. See the [LICENSE](LICENSE-APACHE-2.0.md) file for more details.  
 Interface for interacting with ERC20 standard licensed under the MIT License. See the [LICENSE](LICENSE-MIT.md) file for more details.
