@@ -78,5 +78,6 @@ For support or any inquiries, feel free to reach out to us at [github-issue](htt
 
 ### License
 
-This smart code of each service is licensed under the Apache-2.0 License. See the [LICENSE](LICENSE-APACHE-2.0.md) file for more details.  
-Interface for interacting with ERC20 standard licensed under the MIT License. See the [LICENSE](LICENSE-MIT.md) file for more details.
+The smart contract code for each service is licensed under the Apache-2.0 License. See the [LICENSE-APACHE](LICENSE-APACHE.md) file for more details.  
+The interface for interacting with the ERC20 standard is licensed under the MIT License. See the [LICENSE-MIT](LICENSE-MIT.md) file for more details.
+
