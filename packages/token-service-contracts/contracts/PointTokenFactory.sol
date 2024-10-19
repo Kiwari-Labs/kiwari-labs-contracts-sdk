@@ -11,7 +11,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract PointTokenFactory is IPointTokenFactory, Ownable {
     constructor() Ownable(msg.sender) {}
 
-    /// @inheritdoc IPointFactory
+    /// @inheritdoc IPointTokenFactory
     function createNewPointContract(
         uint256 _initialSupply,
         address _owner,
@@ -26,7 +26,7 @@ contract PointTokenFactory is IPointTokenFactory, Ownable {
             revert BadRequest("Owner address must not be the zero address");
         }
 
-        Point point = new Point(
+        PointToken point = new PointToken(
             _owner,
             _name,
             _symbol,

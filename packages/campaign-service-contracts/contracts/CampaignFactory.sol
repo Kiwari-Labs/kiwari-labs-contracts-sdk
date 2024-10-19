@@ -9,7 +9,7 @@ import "./interfaces/IERC20Mintable.sol";
 import "./interfaces/ICampaignFactory.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract CampaignFactory is Ownable {
+contract CampaignFactory is ICampaignFactory, Ownable {
     constructor() Ownable(msg.sender) {}
 
     function createNewCampaignContract(
@@ -30,8 +30,8 @@ contract CampaignFactory is Ownable {
             _rewardToken,
             _rewardAmount
         );
-        if (owner == address(0)) {
-            // revert BadRequest("");
+        if (_owner == address(0)) {
+            revert BadRequest("Owner address must not be the zero address");
         }
 
         emit NewCampaignContract(address(campaign), _owner);
