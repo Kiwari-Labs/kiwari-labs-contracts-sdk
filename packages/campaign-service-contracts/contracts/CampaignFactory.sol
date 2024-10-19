@@ -1,13 +1,43 @@
 // SPDX-License-Identifier: Apache-2.0
 pragma solidity >=0.8.0 <0.9.0;
 
-/// @title
+/// @title Campaign Factory contract
 /// @author Kiwari Labs
 
-import "./interfaces/IERC20Mintable.sol";
 import "./Campaign.sol";
+import "./interfaces/IERC20Mintable.sol";
+import "./interfaces/ICampaignFactory.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract CampaignFactory is Ownable {
-    // create new campaign
+    constructor() Ownable(msg.sender) {}
+
+    function createNewCampaignContract(
+        address _owner,
+        uint256 _startBlock,
+        uint256 _validFor,
+        address _rewardToken,
+        uint256 _rewardAmount
+    )
+        external
+        onlyOwner
+        returns (address)
+    {
+        Campaign campaign = new Campaign(
+            _owner,
+            _startBlock,
+            _validFor,
+            _rewardToken,
+            _rewardAmount
+        );
+        if (owner == address(0)) {
+            // revert BadRequest("");
+        }
+
+        emit NewCampaignContract(address(campaign), _owner);
+
+        return address(campaign);
+    }
+
+
 }

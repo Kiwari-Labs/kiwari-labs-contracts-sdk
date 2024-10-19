@@ -5,7 +5,7 @@ pragma solidity ^0.8.20;
 /// @author Kiwari Labs
 
 import "./PointToken.sol";
-import "./interfaces/IPointFactory.sol";
+import "./interfaces/IPointTokenFactory.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract PointTokenFactory is IPointTokenFactory, Ownable {

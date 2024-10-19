@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 pragma solidity >=0.8.0 <0.9.0;
 
-/// @title
+/// @title Campaign contract
 /// @author Kiwari Labs
 
 import "./interfaces/IERC20Mintable.sol";
