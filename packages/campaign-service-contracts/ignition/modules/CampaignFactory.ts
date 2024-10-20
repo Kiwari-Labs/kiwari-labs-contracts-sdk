@@ -1,9 +1,9 @@
 import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
 
-const PointFactoryModule = buildModule("PointFactoryModule", (m) => {
-  const pointFactory = m.contract("PointFactory");
+const CampaignFactoryModule = buildModule("CampaignFactoryModule", (m) => {
+  const campaignFactory = m.contract("CampaignFactory");
 
-  return { pointFactory };
+  return { campaignFactory };
 });
 
-export default PointFactoryModule;
+export default CampaignFactoryModule;

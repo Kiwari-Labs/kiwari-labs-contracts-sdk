@@ -74,7 +74,7 @@ PRIVATE_KEY=your_private_key
 
 ### Support and Issue
 
-For support or any inquiries, feel free to reach out to us at [github-issue](https://github.com/Kiwari-Labs/token-service-contracts/issues) or kiwarilabs@protonmail.com
+For support or any inquiries, feel free to reach out to us at [github-issue](https://github.com/Kiwari-Labs/monorepo-service-contracts/issues) or kiwarilabs@protonmail.com
 
 ### License
 
