@@ -7,7 +7,7 @@ pragma solidity >=0.5.0 <0.9.0;
 import "./interfaces/IERC20Burnable.sol";
 import "./interfaces/IERC20Mintable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@kiwarilabs/contracts/abstracts/ERC20EXPBase.sol";
+import "@kiwarilabs/contracts/tokens/ERC20/ERC20EXPBase.sol";
 
 contract PointToken is ERC20EXPBase, IERC20Burnable, IERC20Mintable, Ownable {
     uint8 private _decimals;

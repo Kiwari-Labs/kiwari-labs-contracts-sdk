@@ -405,9 +405,9 @@
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
 "@kiwarilabs/contracts@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@kiwarilabs/contracts/-/contracts-1.0.1.tgz#c2292c87614c7d24539c907125c847208964578f"
-  integrity sha512-G4kKkANjg5rxb/KbRL1DpZo+zTMrWfPdXDO8qPrjXm3Ifn8eN8JEQtrYApRhNH7rOChgBJ08oUrm3LVriXPCWw==
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@kiwarilabs/contracts/-/contracts-1.0.2.tgz#91be9990233b5139fcab208f4d565e1f1d1a7322"
+  integrity sha512-4RnbB8T8zw6jXx/DY+xKB4V2M20bxc/ye0D2FE162kE7x4z37sekXuaJadoqJydiqPpXpa9+vhdr9CDhGvBB/g==
   dependencies:
     "@openzeppelin/contracts" "^5.0.2"
 
