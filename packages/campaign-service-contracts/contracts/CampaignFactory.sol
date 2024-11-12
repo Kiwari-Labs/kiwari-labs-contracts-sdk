@@ -27,14 +27,16 @@ contract CampaignFactory is ICampaignFactory, Ownable {
         uint256 _startBlock,
         uint256 _validFor,
         address _rewardToken,
-        uint256 _rewardAmount
+        uint256 _rewardAmount,
+        uint256 _rewardLimit
     ) external onlyOwnerOrWhitelisted returns (address) {
         Campaign campaign = new Campaign(
             _owner,
             _startBlock,
             _validFor,
             _rewardToken,
-            _rewardAmount
+            _rewardAmount,
+            _rewardLimit
         );
         if (_owner == address(0)) {
             revert BadRequest("Owner address must not be the zero address");

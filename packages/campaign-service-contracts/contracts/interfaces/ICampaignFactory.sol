@@ -6,7 +6,10 @@ pragma solidity >=0.8.0 <0.9.0;
 
 interface ICampaignFactory {
     /// @notice Emitted when `deploy` is called
-    event NewCampaignContract(address indexed pointAddress, address indexed owner);
+    event NewCampaignContract(
+        address indexed pointAddress,
+        address indexed owner
+    );
 
     error BadRequest(string message);
 
@@ -22,7 +25,7 @@ interface ICampaignFactory {
         uint256 _startBlock,
         uint256 _validFor,
         address _rewardToken,
-        uint256 _rewardAmount
+        uint256 _rewardAmount,
+        uint256 _rewardLimit
     ) external returns (address);
-    
 }
