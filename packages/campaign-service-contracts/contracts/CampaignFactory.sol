@@ -16,7 +16,7 @@ contract CampaignFactory is ICampaignFactory, Ownable {
 
     modifier onlyOwnerOrWhitelisted() {
         require(
-            whitelistedAddresses[msg.sender] || Ownable() == msg.sender,
+            whitelistedAddresses[msg.sender] || owner() == msg.sender,
             "Permission deny"
         );
         _;
