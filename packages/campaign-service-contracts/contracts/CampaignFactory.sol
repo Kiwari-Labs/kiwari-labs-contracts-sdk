@@ -10,7 +10,17 @@ import "./interfaces/ICampaignFactory.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract CampaignFactory is ICampaignFactory, Ownable {
+    mapping(address => bool) private whitelistedAddresses;
+
     constructor() Ownable(msg.sender) {}
+
+    modifier onlyOwnerOrWhitelisted() {
+        require(
+            whitelistedAddresses[msg.sender] || Ownable() == msg.sender,
+            "Permission deny"
+        );
+        _;
+    }
 
     function createNewCampaignContract(
         address _owner,
@@ -18,11 +28,7 @@ contract CampaignFactory is ICampaignFactory, Ownable {
         uint256 _validFor,
         address _rewardToken,
         uint256 _rewardAmount
-    )
-        external
-        onlyOwner
-        returns (address)
-    {
+    ) external onlyOwnerOrWhitelisted returns (address) {
         Campaign campaign = new Campaign(
             _owner,
             _startBlock,
@@ -39,5 +45,18 @@ contract CampaignFactory is ICampaignFactory, Ownable {
         return address(campaign);
     }
 
+    // Function to add an address to the whitelist, restricted to onlyOwner
+    function addAddressToWhitelist(address _address) external onlyOwner {
+        whitelistedAddresses[_address] = true;
+    }
 
+    // Function to remove an address from the whitelist, restricted to onlyOwner
+    function removeAddressFromWhitelist(address _address) external onlyOwner {
+        whitelistedAddresses[_address] = false;
+    }
+
+    // Function to check if an address is whitelisted
+    function isWhitelisted(address _address) external view returns (bool) {
+        return whitelistedAddresses[_address];
+    }
 }
