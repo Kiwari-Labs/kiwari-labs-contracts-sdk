@@ -25,7 +25,7 @@ contract PointTokenFactory is IPointTokenFactory, Ownable {
         if (_owner == address(0)) {
             revert BadRequest("Owner address must not be the zero address");
         }
-
+        
         PointToken point = new PointToken(
             _owner,
             _name,
