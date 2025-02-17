@@ -5,9 +5,20 @@ pragma solidity >=0.8.0 <0.9.0;
 /// @author Kiwari Labs
 
 import "./interfaces/IERC20Mintable.sol";
+// import {IReward} from "./interfaces/IReward.sol"
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Campaign is Ownable {
+
+    struct Campaign {
+        // IReward.tokenType tokenType;
+        uint256 startBlock;
+        uint256 endBlock;
+        uint256 totalRewardAllocation;
+        uint256 totalRewarded;
+        address rewardToken;
+    }
+
     uint256 public startBlock;
     uint256 public validFor;
     bool public isCampaignActive; // 1 bytes

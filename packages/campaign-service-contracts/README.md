@@ -20,7 +20,7 @@ pragma solidity ^0.8.0;
 /**
  * @title Reward Contract
  * @notice Implements reward distribution for fungible and non-fungible tokens.
- * Supports time-based campaigns and eligibility checks.
+ * Supports block-based campaigns and eligibility checks.
  */
 interface IRewardContract {
     /// @notice Enum to differentiate reward token types.
@@ -45,9 +45,9 @@ interface IRewardContract {
     /// @dev Returns the address of the reward token (ERC-20 or ERC-721 contract).
     function rewardToken() external view returns (address);
 
-    /// @dev Returns the campaign's start and end timestamps.
-    function startTimestamp() external view returns (uint256);
-    function endTimestamp() external view returns (uint256);
+    /// @dev Returns the campaign's start and end block number.
+    function startBlockNumber() external view returns (uint256);
+    function endTBlockNumber() external view returns (uint256);
 
     /// @dev Returns whether the campaign is currently active.
     function isActivated() external view returns (bool);
