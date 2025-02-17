@@ -1,3 +1,2 @@
-# token service contracts
+# contracts
 
-smart contract for creating a `ERC20` and `ERC721`.
