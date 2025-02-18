@@ -7,6 +7,7 @@
 Include
 - `AbstractTokenProgram`
 - `AbstractBilateralAgreement`
+- `AbstractMultilateralAgreement`
 - `AbstractBilling`
 - TBD
 
