@@ -6,35 +6,35 @@ pragma solidity ^0.8.20;
  * @author Zainan Victor Zhou (@xinbenlv)
  */
 
-// The ERC-165 identifier of this interface is 0xdd691946
+// The ERC-165 identifier of this interface is `0xdd691946`
 interface IERC2135 {
     /**
      * @notice The consume function consumes a token every time it succeeds.
-     * @param _consumer the address of consumer of this token. It doesn't have
+     * @param consumer the address of consumer of this token. It doesn't have
      *                  to be the EOA or contract Account that initiates the TX.
-     * @param _assetId  the NFT asset being consumed
-     * @param _data     extra data passed in for consume for extra message
+     * @param assetId  the NFT asset being consumed
+     * @param data     extra data passed in for consume for extra message
      *                  or future extension.
      */
     function consume(
-        address _consumer,
-        uint256 _assetId,
-        uint256 _amount,
-        bytes calldata _data
-    ) external returns (bool _success);
+        address consumer,
+        uint256 assetId,
+        uint256 amount,
+        bytes calldata data
+    ) external returns (bool success);
 
     /**
      * @notice The interface to check whether an asset is consumable.
-     * @param _consumer the address of consumer of this token. It doesn't have
+     * @param consumer the address of consumer of this token. It doesn't have
      *                  to be the EOA or contract Account that initiates the TX.
-     * @param _assetId  the NFT asset being consumed.
-     * @param _amount   the amount of the asset being consumed.
+     * @param assetId  the NFT asset being consumed.
+     * @param amount   the amount of the asset being consumed.
      */
     function isConsumableBy(
-        address _consumer,
-        uint256 _assetId,
-        uint256 _amount
-    ) external view returns (bool _consumable);
+        address consumer,
+        uint256 assetId,
+        uint256 amount
+    ) external view returns (bool consumable);
 
     /**
      * @notice The event emitted when there is a successful consumption.
