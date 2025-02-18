@@ -9,7 +9,7 @@ import "./interfaces/IERC20Mintable.sol";
 import "./interfaces/ICampaignFactory.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract CampaignFactory is ICampaignFactory, Ownable {
+contract TokenProgramFactory is ICampaignFactory, Ownable {
     constructor() Ownable(msg.sender) {}
 
     function createNewCampaignContract(
@@ -38,6 +38,4 @@ contract CampaignFactory is ICampaignFactory, Ownable {
 
         return address(campaign);
     }
-
-
 }
