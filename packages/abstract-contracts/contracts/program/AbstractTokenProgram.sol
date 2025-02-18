@@ -1,9 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 pragma solidity >=0.8.0 <0.9.0;
 
-import {IERC5679EXT20} from "../interfaces/IERC5679EXT20.sol";
-import {IERC5679EXT721} from "../interfaces/IERC5679EXT721.sol";
-
 abstract contract AbstractTokenProgram {
     enum PROGRAM_POINTER_TYPE {
         BLOCKS_BASED,
@@ -43,11 +40,11 @@ abstract contract AbstractTokenProgram {
     function _pointerProvider() internal virtual view returns (uint256);
 
     function _setURI(string memory uri) internal {
-        _uri = uri
+        _uri = uri;
     }
 
-    function asset() public view returns (address) {
-        return _asset;
+    function token() public view returns (address) {
+        return _token;
     }
 
     /// @notice _transferAsset deposit to program first
@@ -60,45 +57,6 @@ abstract contract AbstractTokenProgram {
             IERC721(_token).safeTransferFrom(this(address), to, id, amount);
         }
         // emit programTransfer
-    }
-
-    /// @notice _transferFromToken approve to program first
-    function _transferFromToken(address from, address to, uint256 id, uint256 amount) internal virtual {
-        if (PROGRAM_TOKEN_TYPE.FUNGIBLE_TOKEN) {
-            IERC20(_token).transferFrom(from, to, amount);
-        } else if (PROGRAM_TOKEN_TYPE.NON_FUNGIBLE_TOKEN) {
-            IERC721(_token).safeTransferFrom(from, to, id);
-        } else {
-            IERC721(_token).safeTransferFrom(from, to, id, amount);
-        }
-        // emit programTransfer
-    }
-
-    // @TODO must check supportInterface first
-    function _mintToken(address to, uint256 id, uint256 amount, bytes calldata data) internal virtual {
-        if (PROGRAM_TOKEN_TYPE.) {
-            IERC5679EXT20(_token).mint(to, amount, data);
-        } else if (PROGRAM_TOKEN_TYPE.NON_FUNGIBLE_TOKEN) {
-            IERC5679EXT721(_token).safeMint(to, id, data);
-        } else {
-            IERC5679EXT1155(_token).safeMint(to, id, amount, data);
-        }
-
-        // emit programMint
-    }
-    
-    // @TODO must check supportInterface first
-    function _burnToken(address from, uint256 id, bytes call data) internal virtual {
-        if (PROGRAM_TOKEN_TYPE.FUNGIBLE_TOKEN) {
-            IERC5679EXT20(_token).burn(from, id, data);
-        } else if (PROGRAM_TOKEN_TYPE.NON_FUNGIBLE_TOKEN) {
-            // use consume ERC-2135 instead.
-            IERC5679EXT721(_token).burn(from, id, data);
-        } else {
-            IERC5679EXT1155(_token).burn(to, id, amount, data);
-        }
-
-        // emit programBurn
     }
 
     function programStatus() public view returns (bool) {
