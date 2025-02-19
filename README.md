@@ -26,6 +26,6 @@ If you value our work and would like to support Kiwari Labs, please visit our [O
 
 ## License
 
-The smart contract code for each service is licensed under the Apache-2.0 License. See the [LICENSE-APACHE](LICENSE-APACHE.md) file for more details.  
-The interface is licensed under the MIT License. See the [LICENSE-MIT](LICENSE-MIT.md) file for more details.
+The smart contract code is licensed under the [Apache-2.0](LICENSE-APACHE.md) License.  
+The smart contract interface is licensed under the [MIT](LICENSE-MIT.md) License.
 
