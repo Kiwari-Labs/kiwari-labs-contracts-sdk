@@ -28,7 +28,7 @@ abstract contract AbstractTokenProgram {
         uint256 end_,
         address token_,
         string memory uri_
-    ) Ownable(owner_) {
+    ) {
         require(start_ > _pointerProvider(), "Start time must be in the future");
         require(start_ < start_, "End time must be after start time");
         _start = start_;
@@ -47,18 +47,6 @@ abstract contract AbstractTokenProgram {
         return _token;
     }
 
-    /// @notice _transferAsset deposit to program first
-    function _transferToken(address to, uint256 id, uint256 amount) internal virtual {
-        if (PROGRAM_TOKEN_TYPE.FUNGIBLE_TOKEN) {
-            IERC20(_token).transfer(to, amount);
-        } else if (PROGRAM_TOKEN_TYPE.NON_FUNGIBLE_TOKEN) {
-            IERC721(_token).safeTransferFrom(this(address), to, id);
-        } else {
-            IERC721(_token).safeTransferFrom(this(address), to, id, amount);
-        }
-        // emit programTransfer
-    }
-
     function programStatus() public view returns (bool) {
         uint256 pointerProvider = _pointerProvider();
         return (pointerProvider >= _start && pointerProvider <= _end);
@@ -68,15 +56,15 @@ abstract contract AbstractTokenProgram {
         return (_start, _end);
     }
 
-    function programPointerType() public view returns (PROGRAM_POINTER_TYPE) {
+    function programPointerType() public virtual pure returns (PROGRAM_POINTER_TYPE) {
         return PROGRAM_POINTER_TYPE.BLOCKS_BASED;
     }
 
-    function programType() public view returns (PROGRAM_TYPE) {
+    function programType() public virtual pure returns (PROGRAM_TYPE) {
         return PROGRAM_TYPE.BURN;
     }
 
-    function programTokenType() public view returns (PROGRAM_TOKEN_TYPE) {
+    function programTokenType() public virtual pure returns (PROGRAM_TOKEN_TYPE) {
         return PROGRAM_TOKEN_TYPE.FUNGIBLE_TOKEN;
     }
 

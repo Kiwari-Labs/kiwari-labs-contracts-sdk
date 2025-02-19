@@ -15,7 +15,7 @@ abstract contract TokenProgramERC6672 is AbstractTokenProgram {
 
     function programTokenType()
         public
-        view
+        pure
         override
         returns (PROGRAM_TOKEN_TYPE)
     {

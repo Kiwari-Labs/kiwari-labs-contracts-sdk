@@ -6,7 +6,7 @@ pragma solidity >=0.8.0 <0.9.0;
  * @author Kiwari Labs
  */
 
-import {IERC20} from "@openzeppelin/contract/token/ERC20/IERC20.sol";
+import {IERC20Metadata} from "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 
 abstract contract AbstractBilling {
 
@@ -15,7 +15,7 @@ abstract contract AbstractBilling {
         TIME_BASED
     }
 
-    IERC20 private _token;
+    IERC20Metadata private _token;
     uint256 private _billPeriod;
     uint8 private _overdueThreshold;
 

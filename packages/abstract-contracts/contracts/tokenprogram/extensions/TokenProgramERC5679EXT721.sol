@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import {AbstractTokenProgram} from "../AbstractTokenProgram.sol";
-// import {IERC5679} from "../../../interfaces/IERC5679.sol";
+import {IERC5679EXT721 as IERC5679} from "../../interfaces/IERC5679/IERC5679EXT721.sol";
 
 abstract contract TokenProgramERC5679EXT721 is AbstractTokenProgram {
     // @TODO
     
     function programTokenType()
         public
-        view
+        pure
         override
         returns (PROGRAM_TOKEN_TYPE)
     {
