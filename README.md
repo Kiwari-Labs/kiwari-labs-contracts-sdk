@@ -5,10 +5,11 @@
 `@kiwarilabs/abstract-contracts` contain an abstract smart contract that ready to craft.
 
 Include
-- `AbstractTokenProgram`
 - `AbstractBilateralAgreement`
-- `AbstractMultilateralAgreement`
 - `AbstractBilling`
+- `AbstractMultilateralAgreement`
+- `AbstractIntellectualProperty`
+- `AbstractTokenProgram`
 - TBD
 
 ## Installing

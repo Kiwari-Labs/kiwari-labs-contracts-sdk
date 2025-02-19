@@ -28,6 +28,12 @@ abstract contract AbstractBilling {
         return _token.symbol();
     }
 
+    function discharge(uint256 billId, uint256 amount) public virtual {
+        // @TODO
+        // _token.transferFrom(msg.sender, amount);
+        // bills[account][billId].balance -= amount;
+    }
+
     function billingPeriod() public virtual view returns (uint256) {
         return _billPeriod;
     }
@@ -38,11 +44,19 @@ abstract contract AbstractBilling {
 
     function overdueBalanceOf(address account) public virtual view returns (uint256) {
         // @TODO look back bill by threshold
+        // uint256 toBill = currentBillOf(account);
+        // uint256 fromBill = toBill - _overdueThreshold;
+        // uint256 overdueBalance = getBill(account, toBill);
+        // while (fromBill != toBill) {
+        //      overBill += getBIll(account, fromBill);
+        //      fromBill++;
+        // }
+        // return overdueBalance;
         return 0;
     }
 
     function outstandingBalanceOf(address account) public virtual view returns (uint256) {
-        // @TODO current bill
+        // return getBill(account, currentBillOf(account));
         return 0;
     }
 
