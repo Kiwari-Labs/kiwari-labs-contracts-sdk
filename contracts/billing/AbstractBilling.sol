@@ -8,38 +8,55 @@ pragma solidity >=0.8.0 <0.9.0;
 
 import {IERC20Metadata} from "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 
+// See reference https://killbill.github.io/slate/.
+
 abstract contract AbstractBilling {
+
+    enum BILLING_STATE {
+        PENDING,
+        ACTIVE,
+        BLOCKED,
+        CANCELLED
+    }
 
     enum BILLING_PERIOD_TYPE {
         BLOCKS_BASED,
         TIME_BASED
     }
 
-    IERC20Metadata private _token;
-    uint256 private _billPeriod;
-    uint8 private _overdueThreshold;
-
-    // sliding window
-    // mapping(address => Epoch) _billCycle;
-
-    // constructor
-
-    function currency() public virtual view returns (string memory) {
-        return _token.symbol();
+    struct Bill {
+        BILLING_STATE state;
+        IERC20Metadata currency;
+        uint256 start;
+        uint256 end;
+        uint32 period;
+        uint8 overdueThreshold;
+        bool blocking;
+        mapping(uint256 => uint256) balances;
     }
 
-    function discharge(uint256 billId, uint256 amount) public virtual {
-        // @TODO
-        // _token.transferFrom(msg.sender, amount);
-        // bills[account][billId].balance -= amount;
+    mapping(address => Bill) private _bills;
+
+    // modifier
+
+    function _discharge(address account, uint256 billId, uint256 amount) internal {
+        // Bill storage bill = _bills[account];
+        // bill.currency.transferFrom(account, bill.service);
+        // bills[account].balances[billId] -= amount;
+
+        // emit Discharge
     }
 
-    function billingPeriod() public virtual view returns (uint256) {
-        return _billPeriod;
+    function billingPeriod(address account) public virtual view returns (uint32) {
+        return _bills[account].period;
     }
 
     function billingPeriodType() public virtual view returns (BILLING_PERIOD_TYPE) {
         return BILLING_PERIOD_TYPE.BLOCKS_BASED;
+    }
+
+    function currency(address account) public virtual view returns (string memory) {
+        return _bills[account].currency.symbol();
     }
 
     function overdueBalanceOf(address account) public virtual view returns (uint256) {
