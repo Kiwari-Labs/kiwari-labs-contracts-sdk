@@ -7,7 +7,7 @@ pragma solidity ^0.8.20;
  * @author Zainan Victor Zhou (@xinbenlv)
  */
 
-// The ERC-165 identifier of this interface is `0xdd691946`.
+// The EIP-165 identifier of this interface is `0xdd691946`.
 interface IERC2135 {
     /**
      * @notice The consume function consumes a token every time it succeeds.

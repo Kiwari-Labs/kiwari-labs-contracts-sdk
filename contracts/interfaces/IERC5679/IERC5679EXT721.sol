@@ -7,7 +7,7 @@ pragma solidity ^0.8.20;
  * @author Zainan Victor Zhou (@xinbenlv)
  */
 
-// The EIP-165 identifier of this interface is `0xcce39764`.
+// The ERC-165 identifier of this interface is `0xcce39764`.
 interface IERC5679EXT721 {
     /**
      * @param to address

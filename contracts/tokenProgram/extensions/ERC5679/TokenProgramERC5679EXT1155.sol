@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import {AbstractTokenProgram} from "../AbstractTokenProgram.sol";
-import {IERC5679EXT1155 as IERC5679} from "../../interfaces/IERC5679/IERC5679EXT1155.sol";
+import {IERC5679EXT1155 as IERC5679} from "../../../interfaces/IERC5679/IERC5679EXT1155.sol";
 
 abstract contract TokenProgramERC5679EXT1155 is AbstractTokenProgram {
     function _safeMint(

@@ -31,20 +31,24 @@ abstract contract AbstractBilling {
         uint256 end;
         uint32 period;
         uint8 overdueThreshold;
-        bool blocking;
         mapping(uint256 => uint256) balances;
     }
 
     mapping(address => Bill) private _bills;
 
-    // modifier
+    function _dischargeBill(address account, uint256 billId, uint256 amount) internal {
+        Bill storage bill = _bills[account];
+        bill.currency.transferFrom(account, address(this), amount);
+        bill.balances[billId] -= amount;
 
-    function _discharge(address account, uint256 billId, uint256 amount) internal {
-        // Bill storage bill = _bills[account];
-        // bill.currency.transferFrom(account, bill.service);
-        // bills[account].balances[billId] -= amount;
+        // emit DischargeBill
+    }
 
-        // emit Discharge
+    function _updateBill(address account, uint256 billId, Bill memory billInfo) internal {
+        // @TODO validation/check
+        _bill[account] = billInfo;
+
+        // emit UpdateBill
     }
 
     function billingPeriod(address account) public virtual view returns (uint32) {
@@ -59,22 +63,8 @@ abstract contract AbstractBilling {
         return _bills[account].currency.symbol();
     }
 
-    function overdueBalanceOf(address account) public virtual view returns (uint256) {
-        // @TODO look back bill by threshold
-        // uint256 toBill = currentBillOf(account);
-        // uint256 fromBill = toBill - _overdueThreshold;
-        // uint256 overdueBalance = getBill(account, toBill);
-        // while (fromBill != toBill) {
-        //      overBill += getBIll(account, fromBill);
-        //      fromBill++;
-        // }
-        // return overdueBalance;
-        return 0;
-    }
-
-    function outstandingBalanceOf(address account) public virtual view returns (uint256) {
-        // return getBill(account, currentBillOf(account));
-        return 0;
+    function billBalanceOf(address account, uint256 billId) public virtual view returns (uint256) {
+        return _bills[account].balances[billId];
     }
 
 }

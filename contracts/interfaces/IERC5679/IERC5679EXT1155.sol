@@ -7,8 +7,14 @@ pragma solidity ^0.8.20;
  * @author Zainan Victor Zhou (@xinbenlv)
  */
 
-// The EIP-165 identifier of this interface is `0xf4cedd5a`.
+// The ERC-165 identifier of this interface is `0xf4cedd5a`.
 interface IERC5679EXT1155 {
+    /**
+     * @param to address
+     * @param id tokenType
+     * @param amount amount of token
+     * @param data data
+     */
     function safeMint(
         address to,
         uint256 id,
@@ -16,6 +22,12 @@ interface IERC5679EXT1155 {
         bytes calldata data
     ) external;
 
+    /**
+     * @param to address
+     * @param id array of tokenType
+     * @param amounts array of token amount
+     * @param data data
+     */
     function safeMintBatch(
         address to,
         uint256[] calldata ids,
@@ -23,13 +35,25 @@ interface IERC5679EXT1155 {
         bytes calldata data
     ) external;
 
+    /**
+     * @param from address
+     * @param id tokenType
+     * @param amount amount of token
+     * @param data data
+     */
     function burn(
         address from,
         uint256 id,
         uint256 amount,
-        bytes[] calldata data
+        bytes calldata data
     ) external;
 
+    /**
+     * @param from address
+     * @param ids array of tokenType
+     * @param amounts array of token amount
+     * @param data data
+     */
     function burnBatch(
         address from,
         uint256[] calldata ids,
