@@ -1,25 +1,23 @@
-# @kiwarilabs/abstract-contracts
+# @kiwarilabs/contracts-sdk
 
 ## Overview
 
-`@kiwarilabs/abstract-contracts` contain an abstract smart contract that ready to craft.
+`@kiwarilabs/contracts-sdk` contain an abstract smart contract that ready to craft.
 
 Include
 - `AbstractBilateralAgreement`
-- `AbstractBilling`
-- `AbstractMultilateralAgreement`
-- `AbstractIntellectualProperty`
+- `AbstractDvP`
 - `AbstractTokenProgram`
 - TBD
 
 ## Installing
 ```shell
-npm install @kiwarilabs/abstract-contracts
+npm install @kiwarilabs/contracts-sdk
 ```
 
 ## Support and Issue
 
-For support or any inquiries, feel free to reach out to us at [github-issue](https://github.com/Kiwari-Labs/abstract-contracts/issues) or kiwarilabs@protonmail.com
+For support or any inquiries, feel free to reach out to us at [github-issue](https://github.com/Kiwari-Labs/contracts-sdk/issues) or kiwarilabs@protonmail.com
 
 ## Funding
 

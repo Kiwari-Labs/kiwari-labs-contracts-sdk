@@ -1,9 +1,9 @@
 {
-  "name": "service-contracts",
+  "name": "contracts-sdk",
   "version": "1.0.0",
   "description": "A Smart contract for multiple type of service on DLT-based Loyalty Platform",
   "main": "index.js",
-  "repository": "https://github.com/Kiwari-Labs/monorepo-service-contracts.git",
+  "repository": "https://github.com/Kiwari-Labs/monorepo-contracts-sdk.git",
   "author": {
     "name": "kiwari-labs",
     "email": "kiwarilabs@protonmail.com",
@@ -15,23 +15,7 @@
     "solidity",
     "smart contracts"
   ],
-  "scripts": {
-    "compile:campaign": "cd packages/campaign-service-contracts && npx hardhat compile",
-    "compile:exchange": "cd packages/exchange-service-contracts && npx hardhat compile",
-    "compile:token": "cd packages/token-service-contracts && npx hardhat compile",
-    "coverage:campaign": "cd packages/campaign-service-contracts && npx hardhat coverage",
-    "coverage:exchange": "cd packages/exchange-service-contracts && npx hardhat coverage",
-    "coverage:token": "cd packages/token-service-contracts && npx hardhat coverage",
-    "test:campaign": "cd packages/campaign-service-contracts && npx hardhat test",
-    "test:exchange": "cd packages/exchange-service-contracts && npx hardhat test",
-    "test:token": "cd packages/token-service-contracts && npx hardhat test",
-    "deploy:prod:campaign": "ccd packages/campaign-service-contracts && npx hardhat ignition deploy --network production",
-    "deploy:prod:exchange": "cd packages/exchange-service-contracts && npx hardhat ignition deploy --network production",
-    "deploy:prod:token": "cd packages/token-service-contracts && npx hardhat ignition deploy --network production",
-    "deploy:stg:campaign": "cd packages/campaign-service-contracts && npx hardhat ignition deploy --network staging",
-    "deploy:stg:exchange": "cd packages/exchange-service-contracts && npx hardhat ignition deploy --network staging",
-    "deploy:stg:token": "cd packages/token-service-contracts && npx hardhat ignition deploy --network staging"
-  },
+  "scripts": {},
   "devDependencies": {
     "@kiwarilabs/contracts": "^1.0.1",
     "@nomicfoundation/hardhat-chai-matchers": "^2.0.0",
