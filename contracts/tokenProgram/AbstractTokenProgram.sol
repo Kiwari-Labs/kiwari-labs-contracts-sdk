@@ -22,7 +22,7 @@ abstract contract AbstractTokenProgram {
     uint256 private _start;
     uint256 private _end;
     address private _token;
-    string private _uri;
+    string private _uri; // ERC-721 and ERC-1155
 
     error TokenProgramInvalidStartPoint();
 
