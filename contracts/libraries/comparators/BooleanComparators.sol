@@ -1,6 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
+/**
+ * @title Boolean type comparator library
+ */
 library BooleanComparators {
     function and(bool x, bool y) internal pure returns (bool) {
         assembly {
