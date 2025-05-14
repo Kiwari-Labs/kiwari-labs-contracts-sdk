@@ -7,6 +7,7 @@ pragma solidity ^0.8.20;
  */
 
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {IConditionalTrade} from "../interfaces/IConditionalTrade.sol";
 import {AddressComparators} from "../libraries/comparators/AddressComparators.sol";
 import {BoolComparators} from "../libraries/comparators/BoolComparators.sol";
 import {UIntComparators} from "../libraries/comparators/UIntComparators.sol";
@@ -29,7 +30,7 @@ abstract contract AbstractOverTheCounterTrade {
         TRADE_STATE state;
         bytes tradeData;
         bytes terminationData;
-        // implementation;
+        IConditionalTrade implementation;
     }
 
     uint8 public constant MAX_PENDING_TRADE = 64;
@@ -40,14 +41,14 @@ abstract contract AbstractOverTheCounterTrade {
     IERC20 private _tokenA;
     IERC20 private _tokenB;
 
+    uint256 private _counter;
+
     mapping(bytes32 => Trade) private _trades;
     mapping(address => uint8) private _pendingTrades;
     mapping(uint256 => bytes32) private _tradeIds;
     mapping(address => uint256) private _nonces;
 
-    uint256 private _counter;
-
-    constructor (address partyA, address partyB, IERC20 tokenA, IERC20 tokenB) {
+    constructor(address partyA, address partyB, IERC20 tokenA, IERC20 tokenB) {
         _partyA = partyA;
         _partyB = partyB;
         _tokenA = tokenA;
@@ -57,46 +58,76 @@ abstract contract AbstractOverTheCounterTrade {
     modifier whenTradeIncepted(bytes32 tradeId) {
         if (_trades[tradeId].state != TRADE_STATE.INCEPTED) {
             // not allow other status
-            revert ();
+            revert();
         }
         _;
     }
 
-    function _processTradeAfterConfirmation(bytes32 tradeId) private {
+    function _processTradeAfterConfirmation(bytes32 tradeId) internal virtual {
         // move/transfer token
     }
 
-    function _processCancelAfterTermination(bytes32 tradeId) private {
+    function _processCancelAfterTermination(bytes32 tradeId) internal virtual {
         // e.g. penalty
     }
 
-    function _updateTradeData(bytes32 tradeId, bytes memory tradeData) internal whenTradeIncepted {
+    function _updateImplementation(
+        bytes32 tradeId
+    ) internal whenTradeIncepted(tradeId) {
+        _trades[tradeId].implementation;
+
+        // emit
+    }
+
+    function _updateTradeData(
+        bytes32 tradeId,
+        bytes memory tradeData
+    ) internal whenTradeIncepted(tradeId) {
         _trades[tradeId].tradeData = tradeData;
     }
 
-    function _updateTerminationData(bytes32 tradeId, bytes memory terminationData) internal whenTradeIncepted {
+    function _updateTerminationData(
+        bytes32 tradeId,
+        bytes memory terminationData
+    ) internal whenTradeIncepted(tradeId) {
         _trades[tradeId].terminationData = terminationData;
     }
 
-    function inceptTrade(address withParty, bytes memory tradeData, bytes32 terminationData) external returns (bytes32 memory) {
+    function inceptTrade(
+        address withParty,
+        bytes memory tradeData,
+        bytes memory terminationData
+    ) external returns (bytes32) {
         address initiator = msg.sender;
         if ((initiator.notEqual(_partyA)).or(initiator.notEqual(_partyB))) {
             // not in trade
-            revert ();
+            revert();
         }
         if (initiator.notEqual(withParty)) {
             // not allow self trade
-            revert ();
+            revert();
         }
-        if (_pendingTrades[initiator].lessThan(MAX_PENDING_TRADE)) {
-            bytes32 tradeId = (keccak256(abi.encode(initiator, withParty, tradeData, _nonces[initiator], block.chainid)));
-            _trades[tradeId].tradeData = tradeData; 
+        if (uint256(_pendingTrades[initiator]).lessThan(MAX_PENDING_TRADE)) {
+            bytes32 tradeId = (
+                keccak256(
+                    abi.encode(
+                        initiator,
+                        withParty,
+                        tradeData,
+                        _nonces[initiator],
+                        block.chainid
+                    )
+                )
+            );
+            _trades[tradeId].tradeData = tradeData;
             _trades[tradeId].terminationData = terminationData;
             _trades[tradeId].state = TRADE_STATE.INCEPTED;
             _trades[tradeId].initiator = initiator;
             _trades[tradeId].responder = withParty;
-            _pendingTrades[initiator]++;
-            _counter++;
+            unchecked {
+                _pendingTrades[initiator]++;
+                _counter++;
+            }
             _tradeIds[_counter];
 
             // emit TradeIncepted(initiator, withParty, tradeId);
@@ -104,33 +135,49 @@ abstract contract AbstractOverTheCounterTrade {
             return tradeId;
         } else {
             // exceed
-            revert ();
+            revert();
         }
     }
 
-    function cancelTrade(bytes32 tradeId) external whenTradeIncepted {
+    function cancelTrade(bytes32 tradeId) external whenTradeIncepted(tradeId) {
         address sender = msg.sender;
         if ((sender.notEqual(_partyA)).or(sender.notEqual(_partyB))) {
             // not in trade
-            revert ();
+            revert();
         }
+        require(
+            _trades[tradeId].implementation.terminationValidation(
+                _trades[tradeId].terminationData
+            ),
+            ""
+        );
         _trades[tradeId].state = TRADE_STATE.TERMINATED;
-        address initiator = _trades[tradeId].initiator; 
-        _pendingTrades[initiator]--;
+        address initiator = _trades[tradeId].initiator;
+        unchecked {
+            _pendingTrades[initiator]--;
+        }
 
         // emit TradeTerminated(initiator, _trades[tradeId].responder, tradeId);
 
         _processCancelAfterTermination(tradeId);
     }
 
-    function confirmTrade(bytes32 tradeId) external override whenTradeIncepted {
+    function confirmTrade(bytes32 tradeId) external whenTradeIncepted(tradeId) {
         address sender = msg.sender;
         if (sender.notEqual(_trades[tradeId].responder)) {
-            revert ();
+            revert();
         }
-        _trades[tradeId].state  = TRADE_STATE.CONFIRMED;
-        address initiator = _trades[tradeId].initiator; 
-        _pendingTrades[initiator]--;
+        require(
+            _trades[tradeId].implementation.tradeValidation(
+                _trades[tradeId].tradeData
+            ),
+            ""
+        );
+        _trades[tradeId].state = TRADE_STATE.CONFIRMED;
+        address initiator = _trades[tradeId].initiator;
+        unchecked {
+            _pendingTrades[initiator]--;
+        }
 
         // emit TradeConfirmed(initiator, sender, tradeId);
 
@@ -145,7 +192,9 @@ abstract contract AbstractOverTheCounterTrade {
         return _trades[tradeId].tradeData;
     }
 
-    function terminationData(bytes32 tradeId) public view returns (bytes memory) {
+    function terminationData(
+        bytes32 tradeId
+    ) public view returns (bytes memory) {
         return _trades[tradeId].terminationData;
     }
 

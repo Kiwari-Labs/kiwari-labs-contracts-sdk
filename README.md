@@ -5,8 +5,7 @@
 `@kiwarilabs/contracts-sdk` contain an abstract smart contract that ready to craft.
 
 Include
-- `AbstractBilateralAgreement`
-- `AbstractDvP`
+- `AbstractOverTheCounter`
 - `AbstractTokenProgram`
 - TBD
 
